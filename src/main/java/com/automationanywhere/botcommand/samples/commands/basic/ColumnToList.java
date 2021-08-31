@@ -36,11 +36,13 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
 //import Math;
 
 @BotCommand
-@CommandPkg(label = "ColumnToList",
-        description = "Esta action converte uma coluna de uma tabela para uma lista de string",
-        node_label = "ColumnToList: Column {{coluna}} from {{tablea}}  to {{returnTo}}",
-        icon = "pkg.svg", name = "ColumnToList",
-        return_description = "",
+@CommandPkg(
+        label = "ColumnToList",
+        name = "ColumnToList",
+        icon = "pkg.svg",
+        description = "[[ColumnToList.description]]",
+        node_label = "[[ColumnToList.node_label]]",
+        return_description = "[[ColumnToList.return_description]]",
         return_type = DataType.LIST,
         return_required = true
 )
@@ -51,11 +53,11 @@ public class ColumnToList {
     @Execute
     public ListValue action(
             @Idx(index = "1", type = TABLE)
-            @Pkg(label = "Tabela")
+            @Pkg(label = "[[ColumnToList.table.label]]",description = "[[ColumnToList.table.description]]")
             @NotEmpty
             Table Tabela,
             @Idx(index = "2", type = TEXT)
-            @Pkg(label = "Coluna",description = "Coluna da tabela à ser transformada em lista")
+            @Pkg(label = "[[ColumnToList.cols.label]]",description = "[[ColumnToList.cols.description]]")
             @NotEmpty
             String coluna
     ) {

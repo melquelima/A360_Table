@@ -36,10 +36,11 @@ import static com.automationanywhere.commandsdk.model.AttributeType.*;
 @BotCommand
 @CommandPkg(
         label = "FilterRegister",
-        description = "Filtro de registros na tabela com formula em JS",
-        icon = "pkg.svg",
         name = "FilterRegister",
-        return_description = "",
+        icon = "pkg.svg",
+        description = "[[FilterRegister.description]]",
+        node_label = "[[FilterRegister.node_label]]",
+        return_description = "[[FilterRegister.return_description]]",
         return_type = DataType.TABLE,
         return_required = true
 )
@@ -50,15 +51,15 @@ public class FilterRegister {
     @Execute
     public TableValue action(
             @Idx(index = "1", type = TABLE)
-            @Pkg(label = "Tabela")
+            @Pkg(label = "[[FilterRegister.table.label]]",description = "[[FilterRegister.table.description]]")
             @NotEmpty
             Table Tabela,
             @Idx(index = "2", type = TEXT)
-            @Pkg(label = "Colunas de Entrada",description = "Colunas a serem inseridas no tratamento Ex:'COl1|COL2'")
+            @Pkg(label = "[[FilterRegister.cols.label]]",description = "[[FilterRegister.cols.description]]")
             @NotEmpty
             String i_colunas,
             @Idx(index = "5", type = AttributeType.CODE)
-            @Pkg(label = "javaScript Code",description = "sua função deve se chamar 'filter' obrigatoriamente e retornar true|false ")
+            @Pkg(label = "[[FilterRegister.code.label]]",description = "[[FilterRegister.code.description]]")
             @CodeType(value = "text/javascript")
             @NotEmpty
             String code

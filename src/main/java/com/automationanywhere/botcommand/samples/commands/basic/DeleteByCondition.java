@@ -37,7 +37,7 @@ import static com.automationanywhere.commandsdk.model.AttributeType.TEXT;
         icon = "pkg.svg",
         return_type = DataType.TABLE,
         return_required = true,
-        return_description = "DataTable without the lines"
+        return_description = "DataTable without the registers"
 )
 
 

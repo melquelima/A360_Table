@@ -37,11 +37,13 @@ import static com.automationanywhere.commandsdk.model.AttributeType.TEXT;
 //import Math;
 
 @BotCommand
-@CommandPkg(label = "ReorderColumns",
-        description = "Esta action re ordena as colunas de uma tabela conforme a ordem definida de colunas\n colunas nao inseridas no campo 'Colunas' serão excluidas!",
-        node_label = "ReorderColumns: from {{Tabela}} order {{colunas}}",
-        icon = "pkg.svg", name = "ReorderColumns",
-        return_description = "",
+@CommandPkg(
+        label = "ReorderColumns",
+        name = "ReorderColumns",
+        icon = "pkg.svg",
+        description = "[[ReorderColumns.description]]",
+        node_label = "[[ReorderColumns.node_label]]",
+        return_description = "[[ReorderColumns.return_description]]",
         return_type = DataType.TABLE,
         return_required = true
 )
@@ -52,11 +54,11 @@ public class ReorderColumns {
     @Execute
     public TableValue action(
             @Idx(index = "1", type = TABLE)
-            @Pkg(label = "Tabela")
+            @Pkg(label = "[[ReorderColumns.table.label]]",description = "[[ReorderColumns.table.description]]")
             @NotEmpty
                     Table Tabela,
             @Idx(index = "2", type = TEXT)
-            @Pkg(label = "Colunas", description = "Colunas a serem ordenadas no tratamento Ex:'COl1|COL2'")
+            @Pkg(label = "[[ReorderColumns.cols.label]]",description = "[[ReorderColumns.cols.description]]")
             @NotEmpty
                     String colunas
     ) {

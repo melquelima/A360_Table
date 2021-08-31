@@ -34,24 +34,26 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
         //Unique name inside a package and label to display.
         name = "TableToXLSX",
         label = "TableToXLSX",
-        node_label = "{{tabela}} to {{outputFile}}",
-        description = "",
         icon = "pkg.svg",
+
+        description = "[[TableToXLSX.description]]",
+        node_label = "[[TableToXLSX.node_label]]",
+        return_description = "[[TableToXLSX.return_description]]",
+
         return_type = STRING,
-        return_required = false,
-        return_description = "Address of the new file"
+        return_required = false
 )
 
 public class TableToXLSX {
     @Execute
     public StringValue action(
             @Idx(index = "1", type = TABLE)
-            @Pkg(label = "Tabela")
+            @Pkg(label = "[[TableToXLSX.table.label]]",description = "[[TableToXLSX.table.description]]")
             @NotEmpty
             Table tabela,
 
             @Idx(index = "2", type = FILE)
-            @Pkg(label = "Output file",description = "example: C:\\folder\\file.xlsx")
+            @Pkg(label = "[[TableToXLSX.output.label]]",description = "[[TableToXLSX.output.description]]")
             @FileExtension("xlsx")
             @NotEmpty
             String outputFile

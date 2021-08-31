@@ -37,19 +37,21 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
         //Unique name inside a package and label to display.
         name = "XlsxToTable",
         label = "XlsxToTable",
-        node_label = "{{file}} to DataTable",
-        description = "",
         icon = "pkg.svg",
+
+        description = "[[XlsxToTable.description]]",
+        node_label = "[[XlsxToTable.node_label]]",
+        return_description = "[[XlsxToTable.return_description]]",
+
         return_type = DataType.TABLE,
-        return_required = true,
-        return_description = "DataTable from xlsx file"
+        return_required = true
 )
 
 public class XlsxToTable {
     @Execute
     public TableValue action(
             @Idx(index = "1", type = FILE)
-            @Pkg(label = "XLSX file",description = "example: C:\\folder\\file.xlsx")
+            @Pkg(label = "[[XlsxToTable.file.label]]",description = "[[XlsxToTable.file.description]]")
             @FileExtension("xlsx")
             @NotEmpty
             String file,
@@ -57,38 +59,38 @@ public class XlsxToTable {
             @Idx(index = "2", type = SELECT, options = {
                     @Idx.Option(index = "2.1", pkg = @Pkg(label = "ByName", value = "name")),
                     @Idx.Option(index = "2.2", pkg = @Pkg(label = "ByIndex", value = "index"))})
-            @Pkg(label = "Sheet:", description = "", default_value = "name", default_value_type = DataType.STRING)
+            @Pkg(label = "[[XlsxToTable.sheetby.label]]",description = "[[XlsxToTable.sheetby.description]]", default_value = "name", default_value_type = DataType.STRING)
             @NotEmpty
             String getSheetBy,
 
             @Idx(index = "2.1.1", type = TEXT)
-            @Pkg(label = "Insira o nome da sheet:",description = "Será adiconada no fim da tabela")
+            @Pkg(label = "[[XlsxToTable.sheetname.label]]",description = "[[XlsxToTable.sheetname.description]]")
             @NotEmpty
             String sheetName,
 
             @Idx(index = "2.2.1", type = NUMBER)
-            @Pkg(label = "Insira o index da sheet:")
+            @Pkg(label = "[[XlsxToTable.sheetidx.label]]",description = "[[XlsxToTable.sheetidx.description]]")
             @NotEmpty
             @GreaterThanEqualTo(value = "0")
             Double sheetIndex,
 
             @Idx(index = "3", type = TEXT)
-            @Pkg(label = "Insira as colunas desejadas:", description = "Exemplo: A:C ou A|B|C ")
+            @Pkg(label = "[[XlsxToTable.col.label]]",description = "[[XlsxToTable.col.description]]")
             @NotEmpty
             String Columns,
 
             @Idx(index = "4", type = CHECKBOX)
-            @Pkg(label = "Contem cabeçalhos",default_value = "false",default_value_type = DataType.BOOLEAN)
+            @Pkg(label = "[[XlsxToTable.header.label]]",description = "[[XlsxToTable.header.description]]",default_value = "false",default_value_type = DataType.BOOLEAN)
             @NotEmpty
             Boolean hasHeaders,
 
             @Idx(index = "5", type = CHECKBOX)
-            @Pkg(label = "Linha de início",default_value = "false",default_value_type = DataType.BOOLEAN)
+            @Pkg(label = "[[XlsxToTable.startcheck.label]]",description = "[[XlsxToTable.startcheck.description]]",default_value = "false",default_value_type = DataType.BOOLEAN)
             @NotEmpty
                     Boolean RowStartCheck,
 
             @Idx(index = "5.1", type = NUMBER)
-            @Pkg(label = "Insira o numero da linha:",description = "tem que ser maior que 0")
+            @Pkg(label = "[[XlsxToTable.startrow.label]]",description = "[[XlsxToTable.startrow.description]]")
             @NotEmpty
             @GreaterThanEqualTo(value = "1")
                     Double RowStart

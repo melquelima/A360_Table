@@ -39,10 +39,11 @@ import static com.automationanywhere.commandsdk.model.AttributeType.*;
 @BotCommand
 @CommandPkg(
         label = "SetColumnName",
-        description = "Esta action renomeia o nome de uma coluna",
-        node_label = "ColumnName: Column {{ColumnName}} from {{Tabela}}  to {{NewColumnName}}",
-        icon = "pkg.svg",
         name = "SetColumnName",
+        icon = "pkg.svg",
+        description = "[[SetColumnName.description]]",
+        node_label = "[[SetColumnName.node_label]]",
+        return_description = "[[SetColumnName.return_description]]",
         return_type = DataType.TABLE,
         return_required = true
 )
@@ -53,32 +54,31 @@ public class SetColumnName {
     @Execute
     public TableValue action(
             @Idx(index = "1", type = TABLE)
-            @Pkg(label = "Tabela")
+            @Pkg(label = "[[SetColumnName.table.label]]",description = "[[SetColumnName.table.description]]")
             @NotEmpty
-            Table Tabela,
-
+                    Table Tabela,
 
             @Idx(index = "2", type = SELECT, options = {
                     @Idx.Option(index = "2.1", pkg = @Pkg(label = "ByName", value = "name")),
                     @Idx.Option(index = "2.2", pkg = @Pkg(label = "ByIndex", value = "index"))})
-            @Pkg(label = "Selecione a coluna", description = "", default_value = "name", default_value_type = DataType.STRING)
+            @Pkg(label = "[[SetColumnName.col.label]]", description = "[[SetColumnName.col.description]]", default_value = "name", default_value_type = DataType.STRING)
             @NotEmpty
-            String TypeIndex,
+                    String TypeIndex,
 
             @Idx(index = "2.1.1", type = TEXT)
-            @Pkg(label = "Insira o nome da coluna")
+            @Pkg(label = "[[SetColumnName.colname.label]]",description = "[[SetColumnName.colname.description]]")
             @NotEmpty
-            String ColumnName,
+                    String ColumnName,
 
             @Idx(index = "2.2.1", type = NUMBER)
-            @Pkg(label = "Insira o index da coluna")
+            @Pkg(label = "[[SetColumnName.colidx.label]]" ,description = "[[SetColumnName.colidx.description]]")
             @NotEmpty
-            Double ColumnIndex,
+                    Double ColumnIndex,
 
             @Idx(index = "3", type = TEXT)
-            @Pkg(label = "Insira o nome da nova coluna")
+            @Pkg(label = "[[SetColumnName.colnew.label]]", description ="[[SetColumnName.colnew.label]]")
             @NotEmpty
-            String NewColumnName
+                    String NewColumnName
 
     ) {
         //============================================================ CHECKING COLUMN

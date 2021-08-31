@@ -36,12 +36,12 @@ import static com.automationanywhere.commandsdk.model.AttributeType.*;
         //Unique name inside a package and label to display.
         name = "Calculate",
         label = "Calculate",
-        node_label = "Calculate {{i_colunasCalc}} on {{i_tabela}} by condition",
-        description = "",
         icon = "pkg.svg",
+        node_label = "[[Calculate.name]]",
+        description = "[[Calculate.description]]",
         return_type = DataType.NUMBER,
         return_required = true,
-        return_description = "DataTable with the new column"
+        return_description = "[[Calculate.return_description]]"
 )
 
 
@@ -50,17 +50,17 @@ public class Calculate {
     @Execute
     public NumberValue action(
             @Idx(index = "1", type = TABLE)
-            @Pkg(label = "Tabela")
+            @Pkg(label = "[[Calculate.table.label]]",description = "[[Calculate.table.description]]")
             @NotEmpty
             Table i_tabela,
 
             @Idx(index = "2", type = TEXT)
-            @Pkg(label = "Colunas de Entrada",description = "Colunas a serem inseridas na condição Ex:'COl1|COL2'")
+            @Pkg(label = "[[Calculate.cols.label]]",description = "[[Calculate.cols.description]]")
             @NotEmpty
             String i_colunasCalc,
 
             @Idx(index = "3", type = AttributeType.CODE)
-            @Pkg(label = "javaScript Code",description = "sua função deve se chamar 'calc' obrigatoriamente e retornar o valor a ser somado\n return: Float ")
+            @Pkg(label = "[[Calculate.code.label]]",description = "[[Calculate.code.description]]")
             @CodeType(value = "text/javascript")
             @NotEmpty
             String i_code

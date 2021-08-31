@@ -36,12 +36,13 @@ import static com.automationanywhere.commandsdk.model.AttributeType.*;
 //import Math;
 
 @BotCommand
-@CommandPkg(label = "RowToList",
-        description = "Esta action converte uma coluna de uma tabela para uma lista de string",
-        node_label = "Linha {{row}} from {{Tabela}}  to {{lista}}",
-        icon = "pkg.svg",
+@CommandPkg(
+        label = "RowToList",
         name = "RowToList",
-        return_description = "",
+        icon = "pkg.svg",
+        description = "[[RowToList.description]]",
+        node_label = "[[RowToList.node_label]]",
+        return_description = "[[RowToList.return_description]]",
         return_type = DataType.LIST,
         return_sub_type = DataType.STRING,
         return_required = true
@@ -55,19 +56,19 @@ public class RowToList {
             @Idx(index = "1", type = SELECT, options = {
                     @Idx.Option(index = "1.1", pkg = @Pkg(label = "Record", value = "record")),
                     @Idx.Option(index = "1.2", pkg = @Pkg(label = "Table", value = "table"))})
-            @Pkg(label = "Tipo:", description = "", default_value = "record", default_value_type = DataType.STRING)
+            @Pkg(label = "[[RowToList.type.label]]", description = "[[RowToList.type.description]]", default_value = "record", default_value_type = DataType.STRING)
             @NotEmpty
                     String type,
             @Idx(index = "1.1.1", type = RECORD)
-            @Pkg(label = "Record:")
+            @Pkg(label = "[[RowToList.record.label]]",description = "[[RowToList.record.description]]")
             @NotEmpty
                     Record record,
             @Idx(index = "1.2.1", type = TABLE)
-            @Pkg(label = "Tabela:")
+            @Pkg(label = "[[RowToList.table.label]]",description = "[[RowToList.table.description]]")
             @NotEmpty
                     Table Tabela,
             @Idx(index = "1.2.2", type = NUMBER)
-            @Pkg(label = "Row:")
+            @Pkg(label = "[[RowToList.row.label]]",description = "[[RowToList.row.description]]")
             @NotEmpty
             @GreaterThanEqualTo("0")
                     Double row

@@ -29,9 +29,16 @@ import java.util.List;
 import static com.automationanywhere.commandsdk.model.AttributeType.*;
 
 @BotCommand
-@CommandPkg(label = "TableColumnForm",
-        description = "Inclusao de uma nova coluna calculada", icon = "pkg.svg", name = "TableColumnForm",
-        return_description = "", return_type = DataType.TABLE, return_required = true)
+@CommandPkg(
+        label = "TableColumnForm",
+        name = "TableColumnForm",
+        icon = "pkg.svg",
+        description = "[[TableColumnForm.description]]",
+        node_label = "[[TableColumnForm.node_label]]",
+        return_description = "[[TableColumnForm.return_description]]",
+        return_type = DataType.TABLE,
+        return_required = true
+)
 
 
 public class TableColumnForm {
@@ -39,46 +46,46 @@ public class TableColumnForm {
     @Execute
     public TableValue action(
             @Idx(index = "1", type = TABLE)
-            @Pkg(label = "Tabela")
+            @Pkg(label = "[[TableColumnForm.table.label]]",description = "[[TableColumnForm.table.description]]")
             @NotEmpty
             Table Tabela,
             @Idx(index = "2", type = TEXT)
-            @Pkg(label = "Colunas de Entrada",description = "Colunas a serem inseridas no tratamento Ex:'COl1|COL2'")
+            @Pkg(label = "[[TableColumnForm.cols.label]]",description = "[[TableColumnForm.cols.description]]")
             @NotEmpty
             String i_colunas,
 
             @Idx(index = "3", type = SELECT, options = {
                     @Idx.Option(index = "3.1", pkg = @Pkg(label = "NewColumn", value = "new")),
                     @Idx.Option(index = "3.2", pkg = @Pkg(label = "UpdateColumn", value = "update"))})
-            @Pkg(label = "Posição da nova coluna na tabela", description = "", default_value = "new", default_value_type = DataType.STRING)
+            @Pkg(label = "[[TableColumnForm.colnewtype.label]]", description = "[[TableColumnForm.colnewtype.description]]", default_value = "new", default_value_type = DataType.STRING)
             @NotEmpty
             String typeNewCol,
 
             @Idx(index = "4", type = SELECT, options = {
                     @Idx.Option(index = "4.1", pkg = @Pkg(label = "ByName", value = "name")),
                     @Idx.Option(index = "4.2", pkg = @Pkg(label = "ByIndex", value = "index"))})
-            @Pkg(label = "Selecione a coluna", description = "", default_value = "name", default_value_type = DataType.STRING)
+            @Pkg(label = "[[TableColumnForm.coltype.label]]", description = "[[TableColumnForm.coltype.description]]", default_value = "name", default_value_type = DataType.STRING)
             @NotEmpty
             String colType,
 
             @Idx(index = "4.1.1", type = TEXT)
-            @Pkg(label = "Insira o nome da coluna",description = "Será adiconada no fim da tabela")
+            @Pkg(label = "[[TableColumnForm.col.label]]",description = "[[TableColumnForm.col.description]]")
             @NotEmpty
             String i_columnName,
 
             @Idx(index = "4.2.1", type = NUMBER)
-            @Pkg(label = "Insira o index da coluna")
+            @Pkg(label = "[[TableColumnForm.colidx.label]",description = "[[TableColumnForm.colidx.description]")
             @NotEmpty
             @GreaterThanEqualTo(value = "0")
             Double i_idx,
 
             @Idx(index = "4.2.2", type = TEXT)
-            @Pkg(label = "Insira o nome da coluna")
+            @Pkg(label = "[[TableColumnForm.colname.label]]",description = "[[TableColumnForm.colname.description]]")
             @NotEmpty
             String i_columnNameByIndex,
 
             @Idx(index = "5", type = AttributeType.CODE)
-            @Pkg(label = "javaScript Code",description = "sua função deve se chamar 'calc' obrigatoriamente ")
+            @Pkg(label = "[[TableColumnForm.code.label]]",description = "[[TableColumnForm.code.description]]")
             @CodeType(value = "text/javascript")
             @NotEmpty
             String code

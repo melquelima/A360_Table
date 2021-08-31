@@ -36,10 +36,13 @@ import static com.automationanywhere.commandsdk.model.DataType.LIST;
 @BotCommand
 @CommandPkg(
         label = "TableQuery",
-        description = "Esta action formata converte uma para string de insert\n Obs:\n\t*Os valores numéricos vazios são substituidos por 0\n\t*Campo 'Colunas' em branco = todas as colunas ",
-        icon = "pkg.svg",
         name = "TableQuery",
-        return_description = "",
+        icon = "pkg.svg",
+
+        description = "[[TableQuery.description]]",
+        node_label = "[[TableQuery.node_label]]",
+        return_description = "[[TableQuery.return_description]]",
+
         return_type = LIST,
         return_required = true
 )
@@ -50,25 +53,25 @@ public class TableQuery {
     @Execute
     public ListValue<String> action(
             @Idx(index = "1", type = TABLE)
-            @Pkg(label = "Tabela")
+            @Pkg(label = "[[TableQuery.table.label]]",description = "[[TableQuery.table.description]]")
             @NotEmpty
             Table Tabela,
             @Idx(index = "2", type = NUMBER)
-            @Pkg(label = "número de registros por query")
+            @Pkg(label = "[[TableQuery.reg.label]]",description = "[[TableQuery.reg.description]]")
             @NotEmpty
             Double registros,
             @Idx(index = "3", type = TEXT)
-            @Pkg(label = "Colunas",description = "Colunas a serem utilizadas (na ordem desejada)")
+            @Pkg(label = "[[TableQuery.col.label]]",description = "[[TableQuery.col.description]]")
             String i_colunas,
             @Idx(index = "4", type = CHECKBOX)
-            @Pkg(label = "é uma query Mysql", description = "Formata o texo no formato apropriado",default_value = "false",default_value_type = DataType.BOOLEAN)
+            @Pkg(label = "[[TableQuery.mysql.label]]",description = "[[TableQuery.mysql.description]]",default_value = "false",default_value_type = DataType.BOOLEAN)
             @NotEmpty
             Boolean isMysql,
             @Idx(index = "5", type = TEXT)
-            @Pkg(label = "Colunas/USD",description = "Colunas que contem valores no formado USD")
+            @Pkg(label = "[[TableQuery.usd.label]]",description = "[[TableQuery.usd.description]]")
             String i_colunasUSD,
             @Idx(index = "6", type = TEXT)
-            @Pkg(label = "Colunas/BRL->USD",description = "Conversao de valores BRL para USD")
+            @Pkg(label = "[[TableQuery.usdbrd.label]]",description = "[[TableQuery.usdbrl.description]]")
             String i_colunasBRLUSD
     ) {
         ListValue<String> returnvalue = new ListValue<String>();
