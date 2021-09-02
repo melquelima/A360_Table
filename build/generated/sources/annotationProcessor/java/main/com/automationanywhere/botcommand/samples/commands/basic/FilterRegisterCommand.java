@@ -51,9 +51,6 @@ public final class FilterRegisterCommand implements BotCommand {
         throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","i_colunas", "String", parameters.get("i_colunas").get().getClass().getSimpleName()));
       }
     }
-    if(convertedParameters.get("i_colunas") == null) {
-      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","i_colunas"));
-    }
 
     if(parameters.containsKey("code") && parameters.get("code") != null && parameters.get("code").get() != null) {
       convertedParameters.put("code", parameters.get("code").get());

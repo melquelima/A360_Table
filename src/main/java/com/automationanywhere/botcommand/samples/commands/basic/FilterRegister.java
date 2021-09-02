@@ -56,7 +56,6 @@ public class FilterRegister {
             Table Tabela,
             @Idx(index = "2", type = TEXT)
             @Pkg(label = "[[FilterRegister.cols.label]]",description = "[[FilterRegister.cols.description]]")
-            @NotEmpty
             String i_colunas,
             @Idx(index = "5", type = AttributeType.CODE)
             @Pkg(label = "[[FilterRegister.code.label]]",description = "[[FilterRegister.code.description]]")
@@ -90,6 +89,7 @@ public class FilterRegister {
 
 
         SCHEMA_NAMES = Arrays.asList(i_colunas.split("\\|"));
+        SCHEMA_NAMES = i_colunas == ""?new ArrayList():SCHEMA_NAMES;
         for (String sc : SCHEMA_NAMES) {
             if (!fnd.exists(sc) && !sc.startsWith("@")) {
                 throw new BotCommandException("Column '" + sc + "' not found!");

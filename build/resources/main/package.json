@@ -4,15 +4,15 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "Table_Uts",
-    "packageVersion": "2.6-20210831-175331",
-    "codeVersion": "2.6-20210831-175331",
+    "packageVersion": "2.6-20210902-193305",
+    "codeVersion": "2.6-20210902-193305",
     "author": "",
     "commands": [
         {
             "name": "Calculate",
             "label": "Calculate",
             "description": "[[Calculate.description]]",
-            "nodeLabel": "[[Calculate.name]]",
+            "nodeLabel": "[[Calculate.node_label]]",
             "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.CalculateCommand",
             "icon": "pkg.svg",
             "returnType": "NUMBER",
@@ -125,12 +125,7 @@
                     "name": "i_colunas",
                     "label": "[[FilterRegister.cols.label]]",
                     "description": "[[FilterRegister.cols.description]]",
-                    "type": "TEXT",
-                    "rules": [
-                        {
-                            "name": "NOT_EMPTY"
-                        }
-                    ]
+                    "type": "TEXT"
                 },
                 {
                     "name": "code",

@@ -37,7 +37,7 @@ import static com.automationanywhere.commandsdk.model.AttributeType.*;
         name = "Calculate",
         label = "Calculate",
         icon = "pkg.svg",
-        node_label = "[[Calculate.name]]",
+        node_label = "[[Calculate.node_label]]",
         description = "[[Calculate.description]]",
         return_type = DataType.NUMBER,
         return_required = true,

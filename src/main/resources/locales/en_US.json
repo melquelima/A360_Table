@@ -84,7 +84,7 @@
 	"TableColumnForm.colname.label": "Column:",
 	"TableColumnForm.colname.description": "Insert the column name",
 	"TableColumnForm.code.label": "javaScript Code",
-	"TableColumnForm.code.description": "your function migth be called 'filter' and return the new value",
+	"TableColumnForm.code.description": "your function migth be called 'calc' and return the new value",
 
 	"TableQuery.description": "Formats values to a insert query\n Ps:\n\t*The numeric emtpty values are converted to 0\n\t*Field 'Columns' blank = All Columns",
 	"TableQuery.node_label": "",
