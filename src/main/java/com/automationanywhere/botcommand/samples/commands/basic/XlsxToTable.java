@@ -75,7 +75,7 @@ public class XlsxToTable {
             Double sheetIndex,
 
             @Idx(index = "3", type = TEXT)
-            @Pkg(label = "[[XlsxToTable.col.label]]",description = "[[XlsxToTable.col.description]]")
+            @Pkg(label = "[[XlsxToTable.cols.label]]",description = "[[XlsxToTable.cols.description]]")
             @NotEmpty
             String Columns,
 
@@ -111,7 +111,7 @@ public class XlsxToTable {
 
             Integer idxs =0;
             for(org.apache.poi.ss.usermodel.Row rw: ROWS){
-                //System.out.println(idxs++);
+                System.out.println(idxs++);
                     List<Cell> listCol = wbH.getColumns(rw);
                     //System.out.println(listCol);
                     List<Value> rwValue = new ArrayList<>();
@@ -151,7 +151,7 @@ public class XlsxToTable {
 
             FindInListSchema fnd = new FindInListSchema(HEADERS);
 
-            System.out.println(HEADERS);
+            //System.out.println(HEADERS);
             Table OUTPUT = new Table(fnd.schemas,listRows);
 
             return new TableValue(OUTPUT);

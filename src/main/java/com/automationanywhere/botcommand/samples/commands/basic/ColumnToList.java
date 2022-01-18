@@ -55,20 +55,40 @@ public class ColumnToList {
             @Idx(index = "1", type = TABLE)
             @Pkg(label = "[[ColumnToList.table.label]]",description = "[[ColumnToList.table.description]]")
             @NotEmpty
-            Table Tabela,
-            @Idx(index = "2", type = TEXT)
-            @Pkg(label = "[[ColumnToList.cols.label]]",description = "[[ColumnToList.cols.description]]")
+                    Table Tabela,
+
+            @Idx(index = "2", type = SELECT, options = {
+                    @Idx.Option(index = "2.1", pkg = @Pkg(label = "ByName", value = "name")),
+                    @Idx.Option(index = "2.2", pkg = @Pkg(label = "ByIndex", value = "index"))})
+            @Pkg(label = "[[ColumnToList.getby.label]]",description = "[[ColumnToList.getby.description]]", default_value = "name", default_value_type = DataType.STRING)
             @NotEmpty
-            String coluna
+                    String getby,
+            @Idx(index = "2.1.1", type = TEXT)
+            @Pkg(label = "[[ColumnToList.byname.label]]",description = "[[ColumnToList.byname.description]]")
+            @NotEmpty
+                String byname,
+            @Idx(index = "2.2.1", type = NUMBER)
+            @Pkg(label = "[[ColumnToList.byindex.label]]",description = "[[ColumnToList.byindex.description]]")
+            @NotEmpty
+                    Double bynindex
     ) {
         //============================================================ CHECKING COLUMNS
         List<Schema> SCHEMAS = Tabela.getSchema();
         FindInListSchema fnd = new FindInListSchema(SCHEMAS);
 
-        if (!fnd.exists(coluna)) {
-            throw new BotCommandException("Column '" + coluna + "' not found!");
+
+        Integer SCHEMA_IDX;
+        if(getby.equals("name")) {
+            if (!fnd.exists(byname)) {
+                throw new BotCommandException("Column '" + byname + "' not found!");
+            }
+            SCHEMA_IDX=fnd.indexSchema(byname);
+        }else{
+            if (Tabela.getRows().size() < bynindex) {
+                throw new BotCommandException("Column '" + bynindex + "' not found!");
+            }
+            SCHEMA_IDX = bynindex.intValue();
         }
-        Integer SCHEMA_IDX = fnd.indexSchema(coluna);
 
 
         List<Value> OutPut = new ArrayList<Value>();

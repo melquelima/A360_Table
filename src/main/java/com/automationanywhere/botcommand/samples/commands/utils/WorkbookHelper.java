@@ -100,8 +100,9 @@ public class WorkbookHelper {
 
     public List<Row> getRows(Sheet sheet){
         List<Row> listRows = new ArrayList();
+        Integer LastRowNumb = sheet.getLastRowNum();
 
-        for(Integer rowIdx = 0; rowIdx < sheet.getLastRowNum();rowIdx++){
+        for(Integer rowIdx = 0; rowIdx <= LastRowNumb;rowIdx++){
             listRows.add(sheet.getRow(rowIdx));
         }
 

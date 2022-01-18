@@ -5,8 +5,7 @@ import com.automationanywhere.botcommand.data.impl.TableValue;
 import com.automationanywhere.botcommand.data.model.Schema;
 import com.automationanywhere.botcommand.data.model.table.Row;
 import com.automationanywhere.botcommand.data.model.table.Table;
-import com.automationanywhere.botcommand.samples.commands.basic.ColumnToList;
-import com.automationanywhere.botcommand.samples.commands.basic.ReorderColumns;
+import com.automationanywhere.botcommand.samples.commands.basic.*;
 import com.automationanywhere.botcommand.samples.commands.utils.FindInListSchema;
 import org.testng.annotations.Test;
 
@@ -17,9 +16,17 @@ public class ReorderColumnsTest {
     @Test
     public void teste(){
         ReorderColumns a = new ReorderColumns();
-        Table tb = this.tabela();
+        DeleteColumns b  =new DeleteColumns();
+        TrimHeaders c = new TrimHeaders();
+        RowToHeaders d = new RowToHeaders();
 
-        TableValue ret = a.action(tb,"BRL|TEST");
+        Table tb = this.tabela();
+        //uteisTest.printTable(tb,10);
+
+        //TableValue ret = a.action(tb,"BRL|-1");
+        //TableValue ret = b.action(tb,"-1|BRL");
+        //TableValue ret = c.action(tb);
+        TableValue ret = d.action(tb,1.0,true);
 
         uteisTest.printTable(ret.get(),10);
         //System.out.println("==================" + ret.get().getSchema().get(2).getName());
@@ -34,9 +41,9 @@ public class ReorderColumnsTest {
         Row rw = new Row();
 
         //CRIA AS COLUNAS
-        header.add(new Schema("TEST"));
-        header.add(new Schema("TEST"));
-        header.add(new Schema("BRL"));
+        header.add(new Schema(" TEST"));
+        header.add(new Schema(" BRL"));
+        header.add(new Schema("TEST "));
         searchResult.setSchema(header);
 
         //ADCIONA A LINHA

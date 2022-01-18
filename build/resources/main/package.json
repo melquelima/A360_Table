@@ -4,8 +4,8 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "Table_Uts",
-    "packageVersion": "2.6-20210903-230403",
-    "codeVersion": "2.6-20210903-230403",
+    "packageVersion": "4.0-20211221-145059",
+    "codeVersion": "4.0-20211221-145059",
     "author": "",
     "commands": [
         {
@@ -85,9 +85,86 @@
                     ]
                 },
                 {
-                    "name": "coluna",
-                    "label": "[[ColumnToList.cols.label]]",
-                    "description": "[[ColumnToList.cols.description]]",
+                    "name": "getby",
+                    "label": "[[ColumnToList.getby.label]]",
+                    "description": "[[ColumnToList.getby.description]]",
+                    "type": "SELECT",
+                    "defaultValue": {
+                        "string": "name",
+                        "type": "STRING"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "ByName",
+                            "value": "name",
+                            "attributes": [
+                                {
+                                    "name": "byname",
+                                    "label": "[[ColumnToList.byname.label]]",
+                                    "description": "[[ColumnToList.byname.description]]",
+                                    "type": "TEXT",
+                                    "rules": [
+                                        {
+                                            "name": "NOT_EMPTY"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "label": "ByIndex",
+                            "value": "index",
+                            "attributes": [
+                                {
+                                    "name": "bynindex",
+                                    "label": "[[ColumnToList.byindex.label]]",
+                                    "description": "[[ColumnToList.byindex.description]]",
+                                    "type": "NUMBER",
+                                    "rules": [
+                                        {
+                                            "name": "NOT_EMPTY"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DeleteColumns",
+            "label": "DeleteColumns",
+            "description": "[[DeleteColumns.description]]",
+            "nodeLabel": "[[DeleteColumns.node_label]]",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.DeleteColumnsCommand",
+            "icon": "pkg.svg",
+            "returnType": "TABLE",
+            "returnSubtype": "UNDEFINED",
+            "returnLabel": "",
+            "returnRequired": true,
+            "returnDescription": "[[DeleteColumns.return_description]]",
+            "attributes": [
+                {
+                    "name": "Tabela",
+                    "label": "[[DeleteColumns.table.label]]",
+                    "description": "[[DeleteColumns.table.description]]",
+                    "type": "TABLE",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "colunas",
+                    "label": "[[DeleteColumns.cols.label]]",
+                    "description": "[[DeleteColumns.cols.description]]",
                     "type": "TEXT",
                     "rules": [
                         {
@@ -173,6 +250,62 @@
                     "label": "[[ReorderColumns.cols.label]]",
                     "description": "[[ReorderColumns.cols.description]]",
                     "type": "TEXT",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "RowToHeaders",
+            "label": "RowToHeaders",
+            "description": "[[RowToHeaders.description]]",
+            "nodeLabel": "[[RowToHeaders.node_label]]",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.RowToHeadersCommand",
+            "icon": "pkg.svg",
+            "returnType": "TABLE",
+            "returnSubtype": "UNDEFINED",
+            "returnLabel": "",
+            "returnRequired": true,
+            "returnDescription": "[[RowToHeaders.return_description]]",
+            "attributes": [
+                {
+                    "name": "Tabela",
+                    "label": "[[RowToHeaders.table.label]]",
+                    "description": "[[RowToHeaders.table.description]]",
+                    "type": "TABLE",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "rowIdx",
+                    "label": "[[RowToHeaders.rowIdx.label]]",
+                    "description": "[[RowToHeaders.rowIdx.description]]",
+                    "type": "NUMBER",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        },
+                        {
+                            "name": "GREATER_THAN_EQUALS",
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                    "name": "deleteRow",
+                    "label": "[[RowToHeaders.deleteRow.label]]",
+                    "description": "[[RowToHeaders.deleteRow.description]]",
+                    "type": "CHECKBOX",
+                    "defaultValue": {
+                        "boolean": false,
+                        "type": "BOOLEAN"
+                    },
                     "rules": [
                         {
                             "name": "NOT_EMPTY"
@@ -501,7 +634,7 @@
             "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.TableQueryCommand",
             "icon": "pkg.svg",
             "returnType": "LIST",
-            "returnSubtype": "UNDEFINED",
+            "returnSubtype": "STRING",
             "returnLabel": "",
             "returnRequired": true,
             "returnDescription": "[[TableQuery.return_description]]",
@@ -557,7 +690,7 @@
                 },
                 {
                     "name": "i_colunasBRLUSD",
-                    "label": "[[TableQuery.usdbrd.label]]",
+                    "label": "[[TableQuery.usdbrl.label]]",
                     "description": "[[TableQuery.usdbrl.description]]",
                     "type": "TEXT"
                 }
@@ -640,6 +773,32 @@
                         {
                             "name": "FILE_EXTENSION",
                             "value": ".xlsx"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "TrimHeaders",
+            "label": "TrimHeaders",
+            "description": "[[TrimHeaders.description]]",
+            "nodeLabel": "[[TrimHeaders.node_label]]",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.TrimHeadersCommand",
+            "icon": "pkg.svg",
+            "returnType": "TABLE",
+            "returnSubtype": "UNDEFINED",
+            "returnLabel": "",
+            "returnRequired": true,
+            "returnDescription": "[[TrimHeaders.return_description]]",
+            "attributes": [
+                {
+                    "name": "Tabela",
+                    "label": "[[TrimHeaders.table.label]]",
+                    "description": "[[TrimHeaders.table.description]]",
+                    "type": "TABLE",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
                         }
                     ]
                 }
@@ -730,8 +889,8 @@
                 },
                 {
                     "name": "Columns",
-                    "label": "[[XlsxToTable.col.label]]",
-                    "description": "[[XlsxToTable.col.description]]",
+                    "label": "[[XlsxToTable.cols.label]]",
+                    "description": "[[XlsxToTable.cols.description]]",
                     "type": "TEXT",
                     "rules": [
                         {

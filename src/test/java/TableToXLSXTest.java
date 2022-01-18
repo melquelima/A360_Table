@@ -39,25 +39,25 @@ public class TableToXLSXTest {
         XlsxToTable a = new XlsxToTable();
 
         //========================================= FILE
-        //String File = "C:\\Temp\\teste.xlsx";
+        String File = "C:\\Users\\melque\\Downloads\\Copy of MR_Easy_Accounts.xlsx";
         //String File = "C:\\Users\\melque\\Documents\\Git\\AA_Packages\\A360-FileConversionPackage\\src\\main\\resources\\test_files\\SampleFilesSource\\SampleExcel.xlsx";
-        String File = "C:\\Users\\melque\\Documents\\teste3.xlsx";
+        //String File = "C:\\Users\\melque\\Documents\\teste3.xlsx";
 
         //========================================= GET SHEET
-        String getSheetBy = "name";// "index"
+        String getSheetBy = "index";// "index"
         String sheetName = "AGNIVJU";
         Double sheetIndex = 0.0;
         Boolean RowStartCheck = true;
-        Double RowStart = 4.0;
+        Double RowStart = 1.0;
         //======================================== GET RANGE
 
         //======================================== OTHERS
-        Boolean hasHeaders = true;
-        String Columns = "B";
+        Boolean hasHeaders = false;
+        String Columns = "A:K";
 
        TableValue tbs = a.action(File,getSheetBy,sheetName,sheetIndex,Columns,hasHeaders,RowStartCheck,RowStart);
        uteisTest.printTable(tbs.get(),15);
-        System.out.println(tbs.get().getRows().size());
+        //System.out.println(tbs.get().getRows().size());
     }
 
     //@Test

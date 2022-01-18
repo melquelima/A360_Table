@@ -59,6 +59,15 @@ public class ColumnToListTest {
 //        ListValue ret = a.action(tb,"TEST");
 //        System.out.println("==================" + ret.get(0));
     }
+    @Test
+    public void col2list(){
+        ColumnToList a = new ColumnToList();
+        Table tb = this.tabela();
+
+        ListValue ret = a.action(tb,"index","TESTs",3.0);
+        System.out.println(ret.get());
+
+    }
 
     private Table tabela(){
         //TableValue tbv = new TableValue();

@@ -32,6 +32,7 @@ import java.util.List;
 
 import static com.automationanywhere.commandsdk.model.AttributeType.*;
 import static com.automationanywhere.commandsdk.model.DataType.LIST;
+import static com.automationanywhere.commandsdk.model.DataType.STRING;
 
 @BotCommand
 @CommandPkg(
@@ -44,6 +45,7 @@ import static com.automationanywhere.commandsdk.model.DataType.LIST;
         return_description = "[[TableQuery.return_description]]",
 
         return_type = LIST,
+        return_sub_type = STRING,
         return_required = true
 )
 
@@ -71,7 +73,7 @@ public class TableQuery {
             @Pkg(label = "[[TableQuery.usd.label]]",description = "[[TableQuery.usd.description]]")
             String i_colunasUSD,
             @Idx(index = "6", type = TEXT)
-            @Pkg(label = "[[TableQuery.usdbrd.label]]",description = "[[TableQuery.usdbrl.description]]")
+            @Pkg(label = "[[TableQuery.usdbrl.label]]",description = "[[TableQuery.usdbrl.description]]")
             String i_colunasBRLUSD
     ) {
         ListValue<String> returnvalue = new ListValue<String>();

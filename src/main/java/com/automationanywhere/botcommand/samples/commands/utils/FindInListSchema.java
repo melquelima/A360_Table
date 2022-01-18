@@ -26,6 +26,17 @@ public class FindInListSchema implements Cloneable{
         }
     }
 
+
+    public List<Integer>schemasIdx(){
+        List<Integer> lista = new ArrayList();
+        int idx = 0;
+        for(Schema lsc : this.schemas){
+            lista.add(idx);
+            idx++;
+        }
+        return lista;
+
+    }
     public Boolean exists(String value) {
         for(Schema lsc : this.schemas){
             if(lsc.getName().equals(value)){
@@ -47,14 +58,13 @@ public class FindInListSchema implements Cloneable{
     public List<Integer> indexSchema(List<String> value) {
         List<Integer> lista = new ArrayList();
         for(String v: value){
-            lista.add(this.indexSchema(v));
-//            int i = 0;
-//            for(Schema lsc : this.schemas) {
-//                if (lsc.getName().equals(v)) {
-//                    lista.add(i);
-//                }
-//                i++;
-//            }
+            int i = 0;
+            for(Schema lsc : this.schemas) {
+                if (lsc.getName().equals(v)) {
+                    lista.add(i);
+                }
+                i++;
+            }
         }
         return lista;
     }
@@ -74,6 +84,21 @@ public class FindInListSchema implements Cloneable{
     public void addSchema(String SchemaName) {
         Schema novo = new Schema(SchemaName);
         this.schemas.add(novo);
+    }
+    public void deleteSchema(Integer idx) {
+        this.schemas.remove(idx);
+    }
+    public void deleteSchema(List<Integer> listIdx) {
+        List<Schema> out = new ArrayList<>();
+        int i = 0;
+
+        for(Schema lsc : this.schemas) {
+            if(!listIdx.contains(i)) {
+                out.add(lsc);
+            }
+            i++;
+        }
+        this.schemas = out;
     }
     public void alterSchema(Integer idx,String SchemaName) {
         Schema novo = new Schema(SchemaName);

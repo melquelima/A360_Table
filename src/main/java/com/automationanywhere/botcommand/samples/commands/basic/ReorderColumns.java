@@ -24,6 +24,7 @@ import com.automationanywhere.botcommand.samples.commands.utils.FindInListSchema
 import com.automationanywhere.commandsdk.annotations.*;
 import com.automationanywhere.commandsdk.annotations.rules.NotEmpty;
 import com.automationanywhere.commandsdk.model.DataType;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,17 +66,42 @@ public class ReorderColumns {
         //============================================================ CHECKING COLUMNS
         List<Schema> SCHEMAS = new ArrayList<>(Tabela.getSchema());
         FindInListSchema fnd = new FindInListSchema(SCHEMAS);
-        List<String> SCHEMA_NAMES = new ArrayList();
+        //List<String> SCHEMA_NAMES = new ArrayList();
 
-        SCHEMA_NAMES = Arrays.asList(colunas.split("\\|"));
-        for (String sc : SCHEMA_NAMES) {
-            if (!fnd.exists(sc)) {
-                throw new BotCommandException("Column '" + sc + "' not found!");
+        List<String> SCHEMA_INPUT = new ArrayList();
+
+        SCHEMA_INPUT = Arrays.asList(colunas.split("\\|"));
+        List<Integer> SCHEMA_IDX = new ArrayList<>();
+        List<String> SCHEMA_NAMES = new ArrayList<>();
+
+        System.out.println(SCHEMA_INPUT);
+        for (int idx=0;idx<SCHEMA_INPUT.size();idx++) {
+            String sc = SCHEMA_INPUT.get(idx);
+            if(isNumeric(sc)) {
+                Integer idxInt = Integer.parseInt(sc);
+                Integer idx2 = idxReverse(fnd.schemas,idxInt);
+                System.out.println("IDX2:" + idx2 + " INT:" + idxInt);
+                if(idx2 >= fnd.schemas.size()){
+                    throw new BotCommandException("Column index '" + sc + "' not found!");
+                }
+                SCHEMA_INPUT.set(idx,fnd.shemaNames().get(idx2));
+                SCHEMA_IDX.add(idx2);
+                SCHEMA_NAMES.add(fnd.shemaNames().get(idx2));
+            }else{
+                if (!fnd.exists(sc)) {
+                    throw new BotCommandException("Column '" + sc + "' not found!");
+                }
+                List<Integer> idxs = fnd.indexSchema(Arrays.asList(new String[] { sc }));
+                System.out.println("IDS:" + idxs);
+                SCHEMA_IDX.addAll(idxs);
+
+                for(int i:idxs){
+                    SCHEMA_NAMES.add(sc);
+                }
             }
         }
-        List<Integer> SCHEMA_IDX = fnd.indexSchema(SCHEMA_NAMES);
 
-
+        System.out.println("SCHEMA NAMES:" + SCHEMA_INPUT);
         //============================================================ RUN ORDER
         Table TBL_ORDERED = new Table();
         List<Row> ROWS = new ArrayList();
@@ -98,6 +124,26 @@ public class ReorderColumns {
         OUTPUT.set(TBL_ORDERED);
         return OUTPUT;
     }
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
 
+    public static Integer idxReverse(List<?> arr,Integer idx){
+        if(idx >=0){
+            return idx;
+        }else{
+            int idx2 = Math.abs(idx);
+            return arr.size()-idx2;
+        }
+
+    }
 
 }

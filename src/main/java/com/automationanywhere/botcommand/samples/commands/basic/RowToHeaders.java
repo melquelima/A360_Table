@@ -21,15 +21,14 @@ import com.automationanywhere.botcommand.data.model.table.Table;
 import com.automationanywhere.botcommand.exception.BotCommandException;
 import com.automationanywhere.botcommand.samples.commands.utils.FindInListSchema;
 import com.automationanywhere.commandsdk.annotations.*;
+import com.automationanywhere.commandsdk.annotations.rules.GreaterThanEqualTo;
 import com.automationanywhere.commandsdk.annotations.rules.NotEmpty;
 import com.automationanywhere.commandsdk.model.DataType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static com.automationanywhere.commandsdk.model.AttributeType.TABLE;
-import static com.automationanywhere.commandsdk.model.AttributeType.TEXT;
+import static com.automationanywhere.commandsdk.model.AttributeType.*;
 //import MaskFormatter;
 
 //import java.Math;
@@ -37,40 +36,57 @@ import static com.automationanywhere.commandsdk.model.AttributeType.TEXT;
 
 @BotCommand
 @CommandPkg(
-        label = "TrimHeaders",
-        name = "TrimHeaders",
+        label = "RowToHeaders",
+        name = "RowToHeaders",
         icon = "pkg.svg",
-        description = "[[TrimHeaders.description]]",
-        node_label = "[[TrimHeaders.node_label]]",
-        return_description = "[[TrimHeaders.return_description]]",
+        description = "[[RowToHeaders.description]]",
+        node_label = "[[RowToHeaders.node_label]]",
+        return_description = "[[RowToHeaders.return_description]]",
         return_type = DataType.TABLE,
         return_required = true
 )
 
 
-public class TrimHeaders {
+public class RowToHeaders {
 
     @Execute
     public TableValue action(
             @Idx(index = "1", type = TABLE)
-            @Pkg(label = "[[TrimHeaders.table.label]]",description = "[[TrimHeaders.table.description]]")
+            @Pkg(label = "[[RowToHeaders.table.label]]",description = "[[RowToHeaders.table.description]]")
             @NotEmpty
-                    Table Tabela
+                    Table Tabela,
+            @Idx(index = "2", type = NUMBER)
+            @Pkg(label = "[[RowToHeaders.rowIdx.label]]",description = "[[RowToHeaders.rowIdx.description]]")
+            @NotEmpty
+            @GreaterThanEqualTo("0")
+                    Double rowIdx,
+            @Idx(index = "3", type = CHECKBOX)
+            @Pkg(label = "[[RowToHeaders.deleteRow.label]]",description = "[[RowToHeaders.deleteRow.description]]",default_value = "false",default_value_type = DataType.BOOLEAN)
+            @NotEmpty
+                    Boolean deleteRow
     ) {
         //============================================================ CHECKING COLUMNS
         List<Schema> SCHEMAS = new ArrayList<>(Tabela.getSchema());
-        FindInListSchema fnd = new FindInListSchema(SCHEMAS);
-        List<String> SCHEMA_NAMES = fnd.shemaNames();
+        List<String> SCHEMA_NAMES = new ArrayList<>();
 
-
-        for(int idx=0;idx<SCHEMA_NAMES.size();idx++){
-            SCHEMA_NAMES.set(idx,SCHEMA_NAMES.get(idx).trim());
+        if(rowIdx >= Tabela.getRows().size()){
+            throw new BotCommandException("Row '" + rowIdx + "' not found!");
         }
 
-        FindInListSchema fnd2 = new FindInListSchema(SCHEMA_NAMES);
+
+        for (Value col : Tabela.getRows().get(rowIdx.intValue()).getValues()) {
+            SCHEMA_NAMES.add(col.toString());
+        }
+        FindInListSchema fnd = new FindInListSchema(SCHEMA_NAMES);
+
+        if(deleteRow){
+            List<Row> rws = Tabela.getRows();
+            rws.remove(rowIdx.intValue());
+            Tabela.setRows(rws);
+        }
 
         //FindInListSchema SCHEMA = new FindInListSchema(SCHEMA_NAMES);
-        Tabela.setSchema(fnd2.schemas);
+        Tabela.setSchema(fnd.schemas);
         TableValue OUTPUT = new TableValue();
         OUTPUT.set(Tabela);
         return OUTPUT;

@@ -13,7 +13,7 @@
 package com.automationanywhere.botcommand.samples.commands.basic;
 
 import com.automationanywhere.botcommand.data.Value;
-import com.automationanywhere.botcommand.data.impl.StringValue;
+import com.automationanywhere.botcommand.data.impl.ListValue;
 import com.automationanywhere.botcommand.data.impl.TableValue;
 import com.automationanywhere.botcommand.data.model.Schema;
 import com.automationanywhere.botcommand.data.model.table.Row;
@@ -36,34 +36,30 @@ import static com.automationanywhere.commandsdk.model.AttributeType.*;
 
 @BotCommand
 @CommandPkg(
-        label = "RowToHeaders",
-        name = "RowToHeaders",
+        label = "ListToHeaders",
+        name = "ListToHeaders",
         icon = "pkg.svg",
-        description = "[[RowToHeaders.description]]",
-        node_label = "[[RowToHeaders.node_label]]",
-        return_description = "[[RowToHeaders.return_description]]",
+        description = "[[ListToHeaders.description]]",
+        node_label = "[[ListToHeaders.node_label]]",
+        return_description = "[[ListToHeaders.return_description]]",
         return_type = DataType.TABLE,
         return_required = true
 )
 
 
-public class RowToHeaders {
+public class ListToHeaders {
 
     @Execute
     public TableValue action(
             @Idx(index = "1", type = TABLE)
-            @Pkg(label = "[[RowToHeaders.table.label]]",description = "[[RowToHeaders.table.description]]")
+            @Pkg(label = "[[ListToHeaders.table.label]]",description = "[[ListToHeaders.table.description]]")
             @NotEmpty
                     Table Tabela,
-            @Idx(index = "2", type = NUMBER)
-            @Pkg(label = "[[RowToHeaders.rowIdx.label]]",description = "[[RowToHeaders.rowIdx.description]]")
+            @Idx(index = "2", type = LIST )
+            @Pkg(label = "[[ListToHeaders.rowIdx.label]]",description = "[[ListToHeaders.rowIdx.description]]")
             @NotEmpty
             @GreaterThanEqualTo("0")
-                    Double rowIdx,
-            @Idx(index = "3", type = CHECKBOX)
-            @Pkg(label = "[[RowToHeaders.deleteRow.label]]",description = "[[RowToHeaders.deleteRow.description]]",default_value = "false",default_value_type = DataType.BOOLEAN)
-            @NotEmpty
-                    Boolean deleteRow
+                    ListValue<String> lista
     ) {
         //============================================================ CHECKING COLUMNS
         List<Schema> SCHEMAS = new ArrayList<>(Tabela.getSchema());

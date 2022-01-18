@@ -9,6 +9,7 @@ import com.automationanywhere.commandsdk.i18n.Messages;
 import com.automationanywhere.commandsdk.i18n.MessagesFactory;
 import java.lang.ClassCastException;
 import java.lang.Deprecated;
+import java.lang.Double;
 import java.lang.Object;
 import java.lang.String;
 import java.lang.Throwable;
@@ -45,18 +46,49 @@ public final class ColumnToListCommand implements BotCommand {
       throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","Tabela"));
     }
 
-    if(parameters.containsKey("coluna") && parameters.get("coluna") != null && parameters.get("coluna").get() != null) {
-      convertedParameters.put("coluna", parameters.get("coluna").get());
-      if(convertedParameters.get("coluna") !=null && !(convertedParameters.get("coluna") instanceof String)) {
-        throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","coluna", "String", parameters.get("coluna").get().getClass().getSimpleName()));
+    if(parameters.containsKey("getby") && parameters.get("getby") != null && parameters.get("getby").get() != null) {
+      convertedParameters.put("getby", parameters.get("getby").get());
+      if(convertedParameters.get("getby") !=null && !(convertedParameters.get("getby") instanceof String)) {
+        throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","getby", "String", parameters.get("getby").get().getClass().getSimpleName()));
       }
     }
-    if(convertedParameters.get("coluna") == null) {
-      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","coluna"));
+    if(convertedParameters.get("getby") == null) {
+      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","getby"));
+    }
+    if(convertedParameters.get("getby") != null) {
+      switch((String)convertedParameters.get("getby")) {
+        case "name" : {
+          if(parameters.containsKey("byname") && parameters.get("byname") != null && parameters.get("byname").get() != null) {
+            convertedParameters.put("byname", parameters.get("byname").get());
+            if(convertedParameters.get("byname") !=null && !(convertedParameters.get("byname") instanceof String)) {
+              throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","byname", "String", parameters.get("byname").get().getClass().getSimpleName()));
+            }
+          }
+          if(convertedParameters.get("byname") == null) {
+            throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","byname"));
+          }
+
+
+        } break;
+        case "index" : {
+          if(parameters.containsKey("bynindex") && parameters.get("bynindex") != null && parameters.get("bynindex").get() != null) {
+            convertedParameters.put("bynindex", parameters.get("bynindex").get());
+            if(convertedParameters.get("bynindex") !=null && !(convertedParameters.get("bynindex") instanceof Double)) {
+              throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","bynindex", "Double", parameters.get("bynindex").get().getClass().getSimpleName()));
+            }
+          }
+          if(convertedParameters.get("bynindex") == null) {
+            throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","bynindex"));
+          }
+
+
+        } break;
+        default : throw new BotCommandException(MESSAGES_GENERIC.getString("generic.InvalidOption","getby"));
+      }
     }
 
     try {
-      Optional<Value> result =  Optional.ofNullable(command.action((Table)convertedParameters.get("Tabela"),(String)convertedParameters.get("coluna")));
+      Optional<Value> result =  Optional.ofNullable(command.action((Table)convertedParameters.get("Tabela"),(String)convertedParameters.get("getby"),(String)convertedParameters.get("byname"),(Double)convertedParameters.get("bynindex")));
       return logger.traceExit(result);
     }
     catch (ClassCastException e) {
