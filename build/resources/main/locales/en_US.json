@@ -163,6 +163,17 @@
 	"XlsxToTable.startcheck.label": "Start Row",
 	"XlsxToTable.startcheck.description": "",
 	"XlsxToTable.startrow.label": "Insert the row to start:",
-	"XlsxToTable.startrow.description": "Greater than 0"
+	"XlsxToTable.startrow.description": "Greater than 0",
+
+	"HasHeader.description": "",
+	"HasHeader.node_label": "Col {{colname}} exists in {{tabela}}",
+	"HasHeader.table.label": "Table:",
+	"HasHeader.table.description": "",
+	"HasHeader.colname.label": "Col:",
+	"HasHeader.colname.description": "Col name to be verified",
+	"HasHeader.btrim.label": "Trim",
+	"HasHeader.btrim.description": "Trim spaces",
+	"HasHeader.not.label": "not",
+	"HasHeader.not.description": "invert the condition to 'do not has header'"
 
 }

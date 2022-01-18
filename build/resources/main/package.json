@@ -4,8 +4,8 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "Table_Uts",
-    "packageVersion": "4.0-20211221-145059",
-    "codeVersion": "4.0-20211221-145059",
+    "packageVersion": "4.1-20220118-111711",
+    "codeVersion": "4.1-20220118-111711",
     "author": "",
     "commands": [
         {
@@ -942,6 +942,69 @@
                                     "value": "1"
                                 }
                             ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "conditionals": [
+        {
+            "name": "HasHeader",
+            "label": "HasHeader",
+            "description": "[[HasHeader.description]]",
+            "nodeLabel": "[[HasHeader.node_label]]",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.conditionals.HasHeaderCondition",
+            "attributes": [
+                {
+                    "name": "Tabela",
+                    "label": "[[HasHeader.table.label]]",
+                    "description": "[[HasHeader.table.description]]",
+                    "type": "TABLE",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "colname",
+                    "label": "[[HasHeader.colname.label]]",
+                    "description": "[[HasHeader.colname.description]]",
+                    "type": "TEXT",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "btrim",
+                    "label": "[[HasHeader.brim.label]]",
+                    "description": "[[HasHeader.btrim.description]]",
+                    "type": "CHECKBOX",
+                    "defaultValue": {
+                        "boolean": false,
+                        "type": "BOOLEAN"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "not",
+                    "label": "[[HasHeader.not.label]]",
+                    "description": "[[HasHeader.not.description]]",
+                    "type": "CHECKBOX",
+                    "defaultValue": {
+                        "boolean": false,
+                        "type": "BOOLEAN"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
                         }
                     ]
                 }

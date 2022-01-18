@@ -162,5 +162,16 @@
     "XlsxToTable.startcheck.label": "Linha de início",
     "XlsxToTable.startcheck.description": "",
     "XlsxToTable.startrow.label": "Insira o numero da linha:",
-    "XlsxToTable.startrow.description": "maior que 0"
+    "XlsxToTable.startrow.description": "maior que 0",
+
+    "HasHeader.description": "",
+    "HasHeader.node_label": "coluna {{colname}} existe em {{tabela}}",
+    "HasHeader.table.label": "Tabela:",
+    "HasHeader.table.description": "",
+    "HasHeader.colname.label": "Coluna:",
+    "HasHeader.colname.description": "Nome da coluna a ser verificada",
+    "HasHeader.btrim.label": "Trim",
+    "HasHeader.btrim.description": "Limpar espaços em branco a esquerda e direita",
+    "HasHeader.not.label": "not",
+    "HasHeader.not.description": "Inverte a condição para não existe"
 }

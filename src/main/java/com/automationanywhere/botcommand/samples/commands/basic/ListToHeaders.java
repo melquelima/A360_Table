@@ -34,7 +34,7 @@ import static com.automationanywhere.commandsdk.model.AttributeType.*;
 //import java.Math;
 //import Math;
 
-@BotCommand
+//@BotCommand
 @CommandPkg(
         label = "ListToHeaders",
         name = "ListToHeaders",
@@ -62,27 +62,26 @@ public class ListToHeaders {
                     ListValue<String> lista
     ) {
         //============================================================ CHECKING COLUMNS
-        List<Schema> SCHEMAS = new ArrayList<>(Tabela.getSchema());
-        List<String> SCHEMA_NAMES = new ArrayList<>();
-
-        if(rowIdx >= Tabela.getRows().size()){
-            throw new BotCommandException("Row '" + rowIdx + "' not found!");
-        }
-
-
-        for (Value col : Tabela.getRows().get(rowIdx.intValue()).getValues()) {
-            SCHEMA_NAMES.add(col.toString());
-        }
-        FindInListSchema fnd = new FindInListSchema(SCHEMA_NAMES);
-
-        if(deleteRow){
-            List<Row> rws = Tabela.getRows();
-            rws.remove(rowIdx.intValue());
-            Tabela.setRows(rws);
-        }
-
-        //FindInListSchema SCHEMA = new FindInListSchema(SCHEMA_NAMES);
-        Tabela.setSchema(fnd.schemas);
+//        List<Schema> SCHEMAS = new ArrayList<>(Tabela.getSchema());
+//        List<String> SCHEMA_NAMES = new ArrayList<>();
+//
+//        if(rowIdx >= Tabela.getRows().size()){
+//            throw new BotCommandException("Row '" + rowIdx + "' not found!");
+//        }
+//
+//
+//        for (Value col : Tabela.getRows().get(rowIdx.intValue()).getValues()) {
+//            SCHEMA_NAMES.add(col.toString());
+//        }
+//        FindInListSchema fnd = new FindInListSchema(SCHEMA_NAMES);
+//
+//        if(deleteRow){
+//            List<Row> rws = Tabela.getRows();
+//            rws.remove(rowIdx.intValue());
+//            Tabela.setRows(rws);
+//        }
+//
+//      Tabela.setSchema(fnd.schemas);
         TableValue OUTPUT = new TableValue();
         OUTPUT.set(Tabela);
         return OUTPUT;

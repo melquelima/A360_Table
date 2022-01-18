@@ -8,6 +8,7 @@ import com.automationanywhere.botcommand.data.model.table.Table;
 import com.automationanywhere.botcommand.exception.BotCommandException;
 import com.automationanywhere.botcommand.samples.commands.basic.Calculate;
 import com.automationanywhere.botcommand.samples.commands.basic.ColumnToList;
+import com.automationanywhere.botcommand.samples.commands.conditionals.HasHeader;
 import org.testng.annotations.Test;
 
 import java.io.BufferedReader;
@@ -19,13 +20,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalculateTest {
-    @Test
+    //@Test
     public void teste(){
         Calculate a = new Calculate();
         Table tb = this.tabela();
 
         NumberValue ret = a.action(tb,"USD",code());
         System.out.println("==================" + ret.get());
+    }
+
+    @Test
+    public void HasHeaders(){
+        HasHeader a = new HasHeader();
+
+        Table tb = this.tabela();
+        System.out.println(a.validate(tb,"TEST",false,true));
+
     }
 
     private Table tabela(){
@@ -37,7 +47,7 @@ public class CalculateTest {
         Row rw = new Row();
 
         //CRIA AS COLUNAS
-        header.add(new Schema("TEST"));
+        header.add(new Schema("TEST "));
         header.add(new Schema("USD"));
         header.add(new Schema("BRL"));
         searchResult.setSchema(header);
