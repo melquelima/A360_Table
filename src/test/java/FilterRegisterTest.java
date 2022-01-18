@@ -25,7 +25,7 @@ public class FilterRegisterTest {
 
         String code = this.code();
 
-        TableValue tbv = a.action(tb,"TEST",code);
+        TableValue tbv = a.action(tb,"",code);
 
         System.out.println("Expected First Value: " + tbv.get(0).get("TEST").toString());
     }
@@ -62,7 +62,7 @@ public class FilterRegisterTest {
         searchResult.setSchema(header);
 
         //ADCIONA A LINHA
-        currentRow.add(new StringValue("Cárcere"));
+        currentRow.add(new StringValue("OK"));
         currentRow.add(new StringValue("1,456.25"));
         currentRow.add(new StringValue("12"));
         rw.setValues(currentRow);

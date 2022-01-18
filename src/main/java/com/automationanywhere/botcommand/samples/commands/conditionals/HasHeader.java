@@ -51,7 +51,7 @@ public class HasHeader {
             @NotEmpty
                     String colname,
             @Idx(index = "3", type = CHECKBOX)
-            @Pkg(label = "[[HasHeader.brim.label]]",description = "[[HasHeader.btrim.description]]",default_value = "false",default_value_type = DataType.BOOLEAN)
+            @Pkg(label = "[[HasHeader.btrim.label]]",description = "[[HasHeader.btrim.description]]",default_value = "false",default_value_type = DataType.BOOLEAN)
             @NotEmpty
                     Boolean btrim,
             @Idx(index = "4", type = CHECKBOX)

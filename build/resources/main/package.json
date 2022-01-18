@@ -4,8 +4,8 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "Table_Uts",
-    "packageVersion": "4.1-20220118-111711",
-    "codeVersion": "4.1-20220118-111711",
+    "packageVersion": "4.2-20220118-132247",
+    "codeVersion": "4.2-20220118-132247",
     "author": "",
     "commands": [
         {
@@ -980,7 +980,7 @@
                 },
                 {
                     "name": "btrim",
-                    "label": "[[HasHeader.brim.label]]",
+                    "label": "[[HasHeader.btrim.label]]",
                     "description": "[[HasHeader.btrim.description]]",
                     "type": "CHECKBOX",
                     "defaultValue": {

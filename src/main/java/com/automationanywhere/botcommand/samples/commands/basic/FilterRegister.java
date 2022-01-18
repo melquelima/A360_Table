@@ -89,13 +89,14 @@ public class FilterRegister {
 
 
         SCHEMA_NAMES = Arrays.asList(i_colunas.split("\\|"));
-        SCHEMA_NAMES = i_colunas == ""?new ArrayList():SCHEMA_NAMES;
+        SCHEMA_NAMES = i_colunas == ""?fnd.shemaNames():SCHEMA_NAMES;
         for (String sc : SCHEMA_NAMES) {
             if (!fnd.exists(sc) && !sc.startsWith("@")) {
                 throw new BotCommandException("Column '" + sc + "' not found!");
             }
         }
         List<Integer> SCHEMA_IDX = fnd.indexSchema(SCHEMA_NAMES);
+        System.out.println(SCHEMA_NAMES);
 
         //============================================================ RUN FILTER
         Debugger debugger = new Debugger();

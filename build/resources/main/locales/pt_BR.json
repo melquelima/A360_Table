@@ -165,7 +165,7 @@
     "XlsxToTable.startrow.description": "maior que 0",
 
     "HasHeader.description": "",
-    "HasHeader.node_label": "coluna {{colname}} existe em {{tabela}}",
+    "HasHeader.node_label": "coluna {{colname}} existe em {{Tabela}}",
     "HasHeader.table.label": "Tabela:",
     "HasHeader.table.description": "",
     "HasHeader.colname.label": "Coluna:",
