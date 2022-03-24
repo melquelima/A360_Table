@@ -173,5 +173,14 @@
     "HasHeader.btrim.label": "Trim",
     "HasHeader.btrim.description": "Limpar espaços em branco a esquerda e direita",
     "HasHeader.not.label": "not",
-    "HasHeader.not.description": "Inverte a condição para não existe"
+    "HasHeader.not.description": "Inverte a condição para não existe",
+
+    "HasAllHeaders.description": "",
+    "HasAllHeaders.node_label": "Colunas em lista existe em {{Tabela}}",
+    "HasAllHeaders.table.label": "Tabela:",
+    "HasAllHeaders.table.description": "",
+    "HasAllHeaders.list.label": "Lista:",
+    "HasAllHeaders.list.description": "Lista de colunas a serem verificadas",
+    "HasAllHeaders.btrim.label": "Trim",
+    "HasAllHeaders.btrim.description": "Limpar espaços em branco a esquerda e direita"
 }

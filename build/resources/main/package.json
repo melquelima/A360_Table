@@ -4,8 +4,8 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "Table_Uts",
-    "packageVersion": "4.2-20220118-132247",
-    "codeVersion": "4.2-20220118-132247",
+    "packageVersion": "4.3-20220317-160214",
+    "codeVersion": "4.3-20220317-160214",
     "author": "",
     "commands": [
         {
@@ -949,6 +949,52 @@
         }
     ],
     "conditionals": [
+        {
+            "name": "HasAllHeaders",
+            "label": "HasAllHeaders",
+            "description": "[[HasAllHeaders.description]]",
+            "nodeLabel": "[[HasAllHeaders.node_label]]",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.conditionals.HasAllHeadersCondition",
+            "attributes": [
+                {
+                    "name": "Tabela",
+                    "label": "[[HasAllHeaders.table.label]]",
+                    "description": "[[HasAllHeaders.table.description]]",
+                    "type": "TABLE",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "list",
+                    "label": "[[HasAllHeaders.list.label]]",
+                    "description": "[[HasAllHeaders.list.description]]",
+                    "type": "LIST",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "btrim",
+                    "label": "[[HasAllHeaders.btrim.label]]",
+                    "description": "[[HasAllHeaders.btrim.description]]",
+                    "type": "CHECKBOX",
+                    "defaultValue": {
+                        "boolean": false,
+                        "type": "BOOLEAN"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "name": "HasHeader",
             "label": "HasHeader",

@@ -5,6 +5,7 @@ import com.automationanywhere.botcommand.data.model.Schema;
 import com.automationanywhere.botcommand.data.model.table.Row;
 import com.automationanywhere.botcommand.data.model.table.Table;
 import com.automationanywhere.botcommand.samples.commands.basic.ColumnToList;
+import com.automationanywhere.botcommand.samples.commands.conditionals.HasAllHeaders;
 import com.automationanywhere.botcommand.samples.commands.utils.FindInListSchema;
 import com.automationanywhere.botcommand.samples.commands.utils.WorkbookHelper;
 import org.apache.poi.ss.usermodel.Cell;
@@ -59,7 +60,26 @@ public class ColumnToListTest {
 //        ListValue ret = a.action(tb,"TEST");
 //        System.out.println("==================" + ret.get(0));
     }
-    @Test
+    //@Test
+    public void HasAllHeaders(){
+        HasAllHeaders a = new HasAllHeaders();
+        Table tb = this.tabela();
+
+        List<Value> list = new ArrayList<>();
+        list.add(new StringValue("TEST"));
+        list.add(new StringValue("USD"));
+        list.add(new StringValue("BRL "));
+
+        ListValue<Value> l = new ListValue<>();
+        l.set(list);
+
+
+        //boolean ret = a.validate(tb,l,true);
+        //System.out.println(ret);
+
+    }
+
+    //@Test
     public void col2list(){
         ColumnToList a = new ColumnToList();
         Table tb = this.tabela();
